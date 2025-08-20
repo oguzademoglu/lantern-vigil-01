@@ -32,9 +32,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public float coyoteCounter;
     [HideInInspector] public float jumpBufferCounter;
 
-    [Header("Attack Details")]
+    [Header("Combat Details")]
     public Vector2 attackVelocity;
     public float attackVelocityDuration;
+    public GameObject swordCollider;
+    public int damageAmount;
+    public SimpleHealth Health { get; private set; }
+    public int maxHealth;
+
     [Header("Collision Detection")]
     public LayerMask groundLayer;
     public LayerMask wallLayer;
@@ -70,6 +75,7 @@ public class Player : MonoBehaviour
     {
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
+        Health = GetComponent<SimpleHealth>();
         StateMachine = new();
         PlayerInputs = new();
         IdleState = new Player_IdleState(this, StateMachine, "idle");
@@ -81,6 +87,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         StateMachine.InitializeState(IdleState);
+        Health.Initialize(maxHealth);
     }
     void Update()
     {
