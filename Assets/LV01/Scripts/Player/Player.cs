@@ -5,6 +5,11 @@ public class Player : MonoBehaviour
 {
     public StateMachine StateMachine { get; private set; }
     public PlayerInputs PlayerInputs { get; private set; }
+    public Player_IdleState IdleState { get; private set; }
+    public Player_MoveState MoveState { get; private set; }
+    public Player_JumpState JumpState { get; private set; }
+    public Player_FallState FallState { get; private set; }
+
     [Header("Player Components")]
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
@@ -62,10 +67,14 @@ public class Player : MonoBehaviour
         Anim = GetComponentInChildren<Animator>();
         StateMachine = new();
         PlayerInputs = new();
+        IdleState = new Player_IdleState(this, StateMachine, "idle");
+        MoveState = new Player_MoveState(this, StateMachine, "move");
+        JumpState = new Player_JumpState(this, StateMachine, "jumpFall");
+        FallState = new Player_FallState(this, StateMachine, "jumpFall");
     }
     void Start()
     {
-
+        StateMachine.InitializeState(IdleState);
     }
     void Update()
     {

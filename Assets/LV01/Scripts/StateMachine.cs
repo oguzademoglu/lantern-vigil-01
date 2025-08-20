@@ -10,7 +10,7 @@ public class StateMachine
         CurrentState = startState;
         CurrentState.Enter();
     }
-    public void ChageState(EntityState newState)
+    public void ChangeState(EntityState newState)
     {
         if (newState == null || CurrentState == newState) return;
         CurrentState?.Exit();
