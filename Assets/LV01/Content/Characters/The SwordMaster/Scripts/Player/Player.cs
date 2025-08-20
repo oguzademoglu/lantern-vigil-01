@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Player_MoveState MoveState { get; private set; }
     public Player_JumpState JumpState { get; private set; }
     public Player_FallState FallState { get; private set; }
+    public Player_BasicAttackState BasicAttackState { get; private set; }
 
     [Header("Player Components")]
     public Rigidbody2D Rb { get; private set; }
@@ -30,6 +31,10 @@ public class Player : MonoBehaviour
     public float jumpBuffer = .12f;
     [HideInInspector] public float coyoteCounter;
     [HideInInspector] public float jumpBufferCounter;
+
+    [Header("Attack Details")]
+    public Vector2 attackVelocity;
+    public float attackVelocityDuration;
     [Header("Collision Detection")]
     public LayerMask groundLayer;
     public LayerMask wallLayer;
@@ -71,6 +76,7 @@ public class Player : MonoBehaviour
         MoveState = new Player_MoveState(this, StateMachine, "move");
         JumpState = new Player_JumpState(this, StateMachine, "jumpFall");
         FallState = new Player_FallState(this, StateMachine, "jumpFall");
+        BasicAttackState = new Player_BasicAttackState(this, StateMachine, "basicAttack");
     }
     void Start()
     {
@@ -126,6 +132,11 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
         Gizmos.DrawLine(wallCheckFirst.position, wallCheckFirst.position + new Vector3(wallCheckDistance * facingDirection, 0));
         Gizmos.DrawLine(wallCheckSecond.position, wallCheckSecond.position + new Vector3(wallCheckDistance * facingDirection, 0));
+    }
+
+    public void CallAnimTrig()
+    {
+        StateMachine.CurrentState.CallAnimTrigger();
     }
 
 }
