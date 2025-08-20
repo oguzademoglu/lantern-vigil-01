@@ -13,7 +13,7 @@ public class Player_GroundedState : EntityState
         // if (playerInputs.Player.Jump.WasPerformedThisFrame())
         //     stateMachine.ChangeState(player.JumpState);
 
-        // if (playerInputs.Player.Attack.WasPerformedThisFrame()) stateMachine.ChangeState(player.BasicAttackState);
+        if (playerInputs.Player.Attack.WasPerformedThisFrame()) stateMachine.ChangeState(player.BasicAttackState);
     }
 
     public override void PhysicsUpdate()
