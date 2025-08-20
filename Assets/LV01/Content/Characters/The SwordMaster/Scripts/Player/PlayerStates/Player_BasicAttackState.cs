@@ -12,6 +12,7 @@ public class Player_BasicAttackState : EntityState
     public override void Enter()
     {
         base.Enter();
+        player.swordCollider.SetActive(true);
         ApplyAttackVelocity();
     }
 
@@ -25,6 +26,12 @@ public class Player_BasicAttackState : EntityState
         {
             if (player.GroundDetected) stateMachine.ChangeState(player.IdleState);
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        player.swordCollider.SetActive(false);
     }
 
     void HandleAttackVelocity()
