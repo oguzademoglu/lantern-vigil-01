@@ -8,6 +8,7 @@ public abstract class EntityState
     protected Rigidbody2D rb;
     protected Animator anim;
     protected bool triggerCalled;
+    protected float stateTimer;
 
     public EntityState(StateMachine stateMachine, string stateName)
     {
@@ -21,7 +22,10 @@ public abstract class EntityState
         anim.SetBool(animBoolHash, true);
         triggerCalled = false;
     }
-    public virtual void Update() { }
+    public virtual void Update()
+    {
+        stateTimer -= Time.deltaTime;
+    }
 
     public virtual void PhysicsUpdate()
     {

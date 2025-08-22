@@ -30,9 +30,10 @@ public class EntityBase : MonoBehaviour
     public LayerMask wallLayer;
     [SerializeField] float groundCheckDistance = 1f;
     [SerializeField] float wallCheckDistance = 1f;
+    [SerializeField] Transform groundCheck;
     [SerializeField] Transform wallCheckFirst;
     [SerializeField] Transform wallCheckSecond;
-    public bool GroundDetected { get; private set; }
+    public bool GroundDetected;
     public bool WallDetected { get; private set; }
 
     protected virtual void Awake()
@@ -80,13 +81,13 @@ public class EntityBase : MonoBehaviour
 
     void HandleCollisionDetection()
     {
-        GroundDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
+        GroundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
         WallDetected = Physics2D.Raycast(wallCheckFirst.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer)
                         && Physics2D.Raycast(wallCheckSecond.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer);
     }
     void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, -groundCheckDistance));
         Gizmos.DrawLine(wallCheckFirst.position, wallCheckFirst.position + new Vector3(wallCheckDistance * facingDirection, 0));
         Gizmos.DrawLine(wallCheckSecond.position, wallCheckSecond.position + new Vector3(wallCheckDistance * facingDirection, 0));
     }
