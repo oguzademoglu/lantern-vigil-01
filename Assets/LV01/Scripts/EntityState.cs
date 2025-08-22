@@ -2,35 +2,30 @@ using UnityEngine;
 
 public abstract class EntityState
 {
-    protected Player player;
     protected StateMachine stateMachine;
     protected string stateName;
     protected int animBoolHash;
     protected Rigidbody2D rb;
     protected Animator anim;
-    protected PlayerInputs playerInputs;
     protected bool triggerCalled;
-    public EntityState(Player player, StateMachine stateMachine, string stateName)
+
+    public EntityState(StateMachine stateMachine, string stateName)
     {
-        this.player = player;
         this.stateMachine = stateMachine;
         this.stateName = stateName;
-        rb = player.Rb;
-        anim = player.Anim;
         animBoolHash = Animator.StringToHash(stateName);
-        playerInputs = player.PlayerInputs;
     }
 
     public virtual void Enter()
     {
-        triggerCalled = false;
         anim.SetBool(animBoolHash, true);
+        triggerCalled = false;
     }
     public virtual void Update() { }
 
     public virtual void PhysicsUpdate()
     {
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+        // anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
     public virtual void Exit()
     {
