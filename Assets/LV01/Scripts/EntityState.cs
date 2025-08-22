@@ -1,39 +1,16 @@
 using UnityEngine;
 
-public abstract class EntityState
+public class EntityState : MonoBehaviour
 {
-    protected StateMachine stateMachine;
-    protected string stateName;
-    protected int animBoolHash;
-    protected Rigidbody2D rb;
-    protected Animator anim;
-    protected bool triggerCalled;
-
-    public EntityState(StateMachine stateMachine, string stateName)
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        this.stateMachine = stateMachine;
-        this.stateName = stateName;
-        animBoolHash = Animator.StringToHash(stateName);
+        
     }
 
-    public virtual void Enter()
+    // Update is called once per frame
+    void Update()
     {
-        anim.SetBool(animBoolHash, true);
-        triggerCalled = false;
-    }
-    public virtual void Update() { }
-
-    public virtual void PhysicsUpdate()
-    {
-        // anim.SetFloat("yVelocity", rb.linearVelocity.y);
-    }
-    public virtual void Exit()
-    {
-        anim.SetBool(animBoolHash, false);
-    }
-
-    public void CallAnimTrigger()
-    {
-        triggerCalled = true;
+        
     }
 }
