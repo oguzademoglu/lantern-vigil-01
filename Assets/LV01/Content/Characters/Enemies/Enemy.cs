@@ -32,7 +32,7 @@ public class Enemy : EntityBase
         StateMachine.InitializeState(IdleState);
     }
 
-    public RaycastHit2D PlayerDetection()
+    public RaycastHit2D PlayerDetected()
     {
         RaycastHit2D hit =
             Physics2D.Raycast(playerCheck.position, Vector2.right * facingDirection, playerCheckDistance, playerLayer | groundLayer);

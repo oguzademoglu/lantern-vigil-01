@@ -12,13 +12,13 @@ public class Enemy_BattleState : EnemyState
     {
         base.Enter();
         if (player == null)
-            player = enemy.PlayerDetection().transform;
+            player = enemy.PlayerDetected().transform;
     }
 
     public override void Update()
     {
         base.Update();
-        if (WithinAttackRange())
+        if (WithinAttackRange() && enemy.PlayerDetected())
             stateMachine.ChangeState(enemy.AttackState);
         else
             enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
