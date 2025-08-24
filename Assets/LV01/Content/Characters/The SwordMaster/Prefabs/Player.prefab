@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4330326091836688606}
   - component: {fileID: 6772190348097943054}
   - component: {fileID: 7395777003102951355}
+  - component: {fileID: 105085915397365076}
   - component: {fileID: 867195194888757673}
   - component: {fileID: 5662939993873179167}
   - component: {fileID: 4569878773104246253}
@@ -94,12 +95,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49910e3b746bfc8409cc1dc7551ba6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColliders: []
+  damageAmount: 1
   targetCheck: {fileID: 7516804975746995570}
   targetCheckRadius: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &105085915397365076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625039807460430197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980161170e04ec64ea0804c3a7e03742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 3
+  isDead: 0
 --- !u!114 &867195194888757673
 MonoBehaviour:
   m_ObjectHideFlags: 0
