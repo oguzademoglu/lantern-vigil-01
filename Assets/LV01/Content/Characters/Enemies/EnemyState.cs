@@ -13,9 +13,10 @@ public class EnemyState : EntityState
     public override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            stateMachine.ChangeState(enemy.AttackState);
-        }
+        // if (Input.GetKeyDown(KeyCode.F))
+        // {
+        //     stateMachine.ChangeState(enemy.AttackState);
+        // }
+        anim.SetFloat("xVelocity", rb.linearVelocity.x);
     }
 }

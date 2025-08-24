@@ -85,7 +85,7 @@ public class EntityBase : MonoBehaviour
         WallDetected = Physics2D.Raycast(wallCheckFirst.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer)
                         && Physics2D.Raycast(wallCheckSecond.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer);
     }
-    void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, groundCheck.position + new Vector3(0, -groundCheckDistance));
         Gizmos.DrawLine(wallCheckFirst.position, wallCheckFirst.position + new Vector3(wallCheckDistance * facingDirection, 0));
