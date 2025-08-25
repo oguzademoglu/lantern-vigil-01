@@ -18,7 +18,7 @@ public class Entity_Health : MonoBehaviour
         if (maxHp <= 0) Die();
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         isDead = true;
         Debug.Log("Entity Died");
