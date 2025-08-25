@@ -13,8 +13,16 @@ public class Enemy_BattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        if (player == null)
-            player = enemy.PlayerDetected().transform;
+        UpdateBattleTimer();
+        // if (player == null)
+        //     player = enemy.PlayerDetected().transform;
+        // if (player == null)
+        //     player = enemy.Player;
+
+        // if (player == null)
+        //     player = enemy.GetPlayerReference(); same thing below:
+        player ??= enemy.GetPlayerReference();
+
         if (ShouldRetreat())
         {
             rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), enemy.retreatVelocity.y);

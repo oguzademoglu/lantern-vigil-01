@@ -23,6 +23,15 @@ public class Enemy : EntityBase
     [Header("Player Detection")]
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10f;
+    public Transform Player { get; private set; }
+
+    public void TryEnterBattleState(Transform player)
+    {
+        Player = player;
+        if (StateMachine.CurrentState == BattleState || StateMachine.CurrentState == AttackState)
+            return;
+        StateMachine.ChangeState(BattleState);
+    }
 
     protected override void Awake()
     {
@@ -36,6 +45,13 @@ public class Enemy : EntityBase
     {
         base.Start();
         StateMachine.InitializeState(IdleState);
+    }
+
+    public Transform GetPlayerReference()
+    {
+        if (Player == null)
+            Player = PlayerDetected().transform;
+        return Player;
     }
 
     public RaycastHit2D PlayerDetected()
