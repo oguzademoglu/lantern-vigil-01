@@ -63,7 +63,7 @@ public class EntityBase : MonoBehaviour
         HandleFlip(xVelocity);
     }
 
-    void HandleFlip(float xVelocity)
+    public void HandleFlip(float xVelocity)
     {
         if (xVelocity < 0 && facingRight) Flip();
         else if (xVelocity > 0 && facingRight == false) Flip();
