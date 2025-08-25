@@ -289,8 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28016675b2f988641988611eb5812da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
+  maxHp: 20
   isDead: 0
+  knockbackVelocity: {x: 5, y: 3}
+  knockbackDuration: 0.4
 --- !u!114 &1094039718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: d8041b75455e40a419eb2c22d2d90c34, type: 2}
-  onDamageDuration: 0.2
+  onDamageDuration: 0.4
 --- !u!1 &1516569805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625039807460430197, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
@@ -603,6 +605,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: maxHp
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: knockbackDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: knockbackVelocity.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: knockbackVelocity.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 625039807460430197, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: m_Name
       value: Player

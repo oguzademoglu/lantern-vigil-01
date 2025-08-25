@@ -4,18 +4,24 @@ using UnityEngine;
 public class Entity_Health : MonoBehaviour
 {
     private Entity_VFX entity_VFX;
+    private EntityBase entity;
     [SerializeField] protected float maxHp = 3;
     [SerializeField] protected bool isDead;
+    [SerializeField] protected Vector2 knockbackVelocity;
+    [SerializeField] protected float knockbackDuration;
 
 
-    void Awake()
+    protected virtual void Awake()
     {
+        entity = GetComponent<EntityBase>();
         entity_VFX = GetComponent<Entity_VFX>();
     }
 
     public virtual void TakeDamage(int damage, Transform damageDealer)
     {
         if (isDead) return;
+        Vector2 knockbackPower = CalculateKnockback(damageDealer);
+        entity?.ReceiveKnockback(knockbackPower, knockbackDuration);
         entity_VFX?.PlayOnDamageVfx();
         ReduceHp(damage);
     }
@@ -30,5 +36,12 @@ public class Entity_Health : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Entity Died");
+    }
+
+    Vector2 CalculateKnockback(Transform damageDealer)
+    {
+        int direction = transform.position.x > damageDealer.position.x ? 1 : -1;
+        knockbackVelocity.x *= direction;
+        return knockbackVelocity;
     }
 }
