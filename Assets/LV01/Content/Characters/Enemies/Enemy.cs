@@ -8,11 +8,17 @@ public class Enemy : EntityBase
     public Enemy_AttackState AttackState { get; private set; }
     public Enemy_BattleState BattleState { get; private set; }
 
-    public float idleTime;
+
     [Header("Battle Details")]
     public float battleMoveSpeed = 3;
     public float attackDistance = 2;
+    public float battleTimeDuration = 5;
+    public float minRetreatDistance = 1;
+    public Vector2 retreatVelocity;
+
+
     [Header("Movement Details")]
+    public float idleTime;
     [SerializeField] private LayerMask playerLayer;
     [Header("Player Detection")]
     [SerializeField] private Transform playerCheck;
@@ -50,5 +56,8 @@ public class Enemy : EntityBase
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(playerCheck.position,
             new Vector3(playerCheck.position.x + (attackDistance * facingDirection), playerCheck.position.y));
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(playerCheck.position,
+            new Vector3(playerCheck.position.x + (minRetreatDistance * facingDirection), playerCheck.position.y));
     }
 }
