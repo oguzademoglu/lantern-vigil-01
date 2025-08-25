@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EntityBase : MonoBehaviour
@@ -36,6 +37,10 @@ public class EntityBase : MonoBehaviour
     public bool GroundDetected;
     public bool WallDetected { get; private set; }
 
+    [Header("Entity Condition")]
+    private bool isKnocked;
+    private Coroutine knockbackCo;
+
     protected virtual void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -57,8 +62,25 @@ public class EntityBase : MonoBehaviour
         StateMachine.PhysicsUpdateActiveState();
     }
 
+    public void ReceiveKnockback(Vector2 knockback, float duration)
+    {
+        if (knockbackCo != null)
+            StopCoroutine(knockbackCo);
+        knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));
+    }
+
+    IEnumerator KnockbackCo(Vector2 knockback, float duration)
+    {
+        isKnocked = true;
+        Rb.linearVelocity = knockback;
+        yield return new WaitForSeconds(duration);
+        Rb.linearVelocity = Vector2.zero;
+        isKnocked = false;
+    }
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        if (isKnocked) return;
         Rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip(xVelocity);
     }

@@ -10,7 +10,5 @@ public class Enemy_Health : Entity_Health
             Enemy.TryEnterBattleState(damageDealer);
 
         base.TakeDamage(damage, damageDealer);
-
-        Debug.Log(maxHp);
     }
 }
