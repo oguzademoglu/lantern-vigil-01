@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity_Health : MonoBehaviour
@@ -35,6 +37,8 @@ public class Entity_Health : MonoBehaviour
     protected virtual void Die()
     {
         isDead = true;
+        entity.EntityDeath();
+        StartCoroutine(DeathCo());
         Debug.Log("Entity Died");
     }
 
@@ -43,5 +47,11 @@ public class Entity_Health : MonoBehaviour
         int direction = transform.position.x > damageDealer.position.x ? 1 : -1;
         knockbackVelocity.x *= direction;
         return knockbackVelocity;
+    }
+
+    IEnumerator DeathCo()
+    {
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
     }
 }
