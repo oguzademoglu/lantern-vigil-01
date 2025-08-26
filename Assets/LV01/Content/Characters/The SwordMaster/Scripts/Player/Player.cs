@@ -1,14 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : EntityBase
 {
+    public static event Action OnPlayerDeath;
     public PlayerInputs PlayerInputs { get; private set; }
     public Player_IdleState IdleState { get; private set; }
     public Player_MoveState MoveState { get; private set; }
     public Player_JumpState JumpState { get; private set; }
     public Player_FallState FallState { get; private set; }
     public Player_BasicAttackState BasicAttackState { get; private set; }
+    public Player_DeadState DeadState { get; private set; }
 
     [Header("Movement Details")]
     public Vector2 MoveInput { get; private set; }
@@ -53,6 +56,7 @@ public class Player : EntityBase
         MoveState = new Player_MoveState(this, StateMachine, "move");
         JumpState = new Player_JumpState(this, StateMachine, "jumpFall");
         FallState = new Player_FallState(this, StateMachine, "jumpFall");
+        DeadState = new Player_DeadState(this, StateMachine, "dead");
         BasicAttackState = new Player_BasicAttackState(this, StateMachine, "basicAttack");
     }
 
@@ -73,6 +77,13 @@ public class Player : EntityBase
         else coyoteCounter = Mathf.Max(0f, coyoteCounter - Time.fixedDeltaTime);
         if (jumpBufferCounter > 0)
             jumpBufferCounter = Mathf.Max(0, jumpBufferCounter - Time.fixedDeltaTime);
+    }
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        OnPlayerDeath?.Invoke();
+        StateMachine.ChangeState(DeadState);
     }
 
 
