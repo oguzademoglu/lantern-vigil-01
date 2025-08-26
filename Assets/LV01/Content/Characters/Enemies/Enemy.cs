@@ -24,7 +24,7 @@ public class Enemy : EntityBase
     [Header("Player Detection")]
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10f;
-    public Transform Player { get; private set; }
+    public Transform player { get; private set; }
 
     public override void EntityDeath()
     {
@@ -32,9 +32,14 @@ public class Enemy : EntityBase
         StateMachine.ChangeState(DeadState);
     }
 
+    private void HandlePlayerDeath()
+    {
+        StateMachine.ChangeState(IdleState);
+    }
+
     public void TryEnterBattleState(Transform player)
     {
-        Player = player;
+        this.player = player;
         if (StateMachine.CurrentState == BattleState || StateMachine.CurrentState == AttackState)
             return;
         StateMachine.ChangeState(BattleState);
@@ -57,10 +62,11 @@ public class Enemy : EntityBase
 
     public Transform GetPlayerReference()
     {
-        if (Player == null)
-            Player = PlayerDetected().transform;
-        return Player;
+        if (player == null)
+            player = PlayerDetected().transform;
+        return player;
     }
+
 
     public RaycastHit2D PlayerDetected()
     {
@@ -83,6 +89,15 @@ public class Enemy : EntityBase
         Gizmos.color = Color.green;
         Gizmos.DrawLine(playerCheck.position,
             new Vector3(playerCheck.position.x + (minRetreatDistance * facingDirection), playerCheck.position.y));
+    }
+
+    void OnEnable()
+    {
+        Player.OnPlayerDeath += HandlePlayerDeath;
+    }
+    void OnDisable()
+    {
+        Player.OnPlayerDeath -= HandlePlayerDeath;
     }
 
 }

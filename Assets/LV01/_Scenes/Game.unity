@@ -607,7 +607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: maxHp
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 105085915397365076, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: knockbackDuration
