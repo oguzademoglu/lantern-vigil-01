@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class Enemy_DeadState : EnemyState
@@ -11,9 +9,6 @@ public class Enemy_DeadState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("enter dead state");
-        rb.linearVelocity = new Vector2(10f, 5f);
+        rb.linearVelocity = new Vector2(10f, 4f);
     }
-
-
 }
