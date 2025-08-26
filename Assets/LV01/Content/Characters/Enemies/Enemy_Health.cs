@@ -6,9 +6,12 @@ public class Enemy_Health : Entity_Health
     Enemy Enemy => GetComponent<Enemy>();
     public override void TakeDamage(int damage, Transform damageDealer)
     {
+        base.TakeDamage(damage, damageDealer);
+
+        if (isDead) return;
+
         if (damageDealer.GetComponent<Player>() != null)
             Enemy.TryEnterBattleState(damageDealer);
 
-        base.TakeDamage(damage, damageDealer);
     }
 }

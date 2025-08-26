@@ -7,6 +7,7 @@ public class Enemy : EntityBase
     public Enemy_MoveState MoveState { get; private set; }
     public Enemy_AttackState AttackState { get; private set; }
     public Enemy_BattleState BattleState { get; private set; }
+    public Enemy_DeadState DeadState { get; private set; }
 
 
     [Header("Battle Details")]
@@ -25,6 +26,12 @@ public class Enemy : EntityBase
     [SerializeField] private float playerCheckDistance = 10f;
     public Transform Player { get; private set; }
 
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        StateMachine.ChangeState(DeadState);
+    }
+
     public void TryEnterBattleState(Transform player)
     {
         Player = player;
@@ -40,6 +47,7 @@ public class Enemy : EntityBase
         MoveState = new Enemy_MoveState(this, StateMachine, "move");
         AttackState = new Enemy_AttackState(this, StateMachine, "attack");
         BattleState = new Enemy_BattleState(this, StateMachine, "battle");
+        DeadState = new Enemy_DeadState(this, StateMachine, "dead");
     }
     protected override void Start()
     {
@@ -76,4 +84,5 @@ public class Enemy : EntityBase
         Gizmos.DrawLine(playerCheck.position,
             new Vector3(playerCheck.position.x + (minRetreatDistance * facingDirection), playerCheck.position.y));
     }
+
 }
