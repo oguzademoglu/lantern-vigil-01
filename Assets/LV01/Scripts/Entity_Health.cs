@@ -51,7 +51,7 @@ public class Entity_Health : MonoBehaviour
 
     IEnumerator DeathCo()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1.4f);
         Destroy(gameObject);
     }
 }

@@ -8,6 +8,7 @@ public class Enemy : EntityBase
     public Enemy_AttackState AttackState { get; private set; }
     public Enemy_BattleState BattleState { get; private set; }
     public Enemy_DeadState DeadState { get; private set; }
+    public Enemy_PostAttackWaitState PostAttackWaitState { get; private set; }
 
 
     [Header("Battle Details")]
@@ -16,6 +17,10 @@ public class Enemy : EntityBase
     public float battleTimeDuration = 5;
     public float minRetreatDistance = 1;
     public Vector2 retreatVelocity;
+    public float attackCooldown = 1;
+    [HideInInspector] public float lastAttackTime = Mathf.NegativeInfinity;
+    public float postAttackIdleDuration = .6f;
+
 
 
     [Header("Movement Details")]
@@ -53,6 +58,7 @@ public class Enemy : EntityBase
         AttackState = new Enemy_AttackState(this, StateMachine, "attack");
         BattleState = new Enemy_BattleState(this, StateMachine, "battle");
         DeadState = new Enemy_DeadState(this, StateMachine, "dead");
+        PostAttackWaitState = new Enemy_PostAttackWaitState(this, StateMachine, "idle");
     }
     protected override void Start()
     {

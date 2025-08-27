@@ -40,7 +40,7 @@ public class Enemy_BattleState : EnemyState
         if (BattleTimeIsOver())
             stateMachine.ChangeState(enemy.IdleState);
 
-        if (WithinAttackRange() && enemy.PlayerDetected())
+        if (WithinAttackRange() && enemy.PlayerDetected() && CanAttack())
             stateMachine.ChangeState(enemy.AttackState);
         else
             enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
@@ -52,6 +52,7 @@ public class Enemy_BattleState : EnemyState
     bool BattleTimeIsOver() => Time.time > lastTimeInBattle + enemy.battleTimeDuration;
     bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;
     bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
+    bool CanAttack() => Time.time >= enemy.lastAttackTime + enemy.attackCooldown;
 
     float DistanceToPlayer()
     {
