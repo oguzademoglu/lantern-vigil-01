@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallJumpForce: {x: 0, y: 0}
-  moveSpeed: 2
+  moveSpeed: 4
   dashSpeed: 5
   dashDuration: 1
   jumpForce: 12
@@ -140,11 +140,14 @@ MonoBehaviour:
   wallCheckFirst: {fileID: 7922490602096600889}
   wallCheckSecond: {fileID: 3863401391724530173}
   GroundDetected: 0
-  battleMoveSpeed: 3
+  battleMoveSpeed: 8
   attackDistance: 2
   battleTimeDuration: 5
   minRetreatDistance: 1
   retreatVelocity: {x: 5, y: 3}
+  attackCooldown: 1
+  lastAttackTime: -Infinity
+  postAttackIdleDuration: 0.6
   idleTime: 1
   playerLayer:
     serializedVersion: 2

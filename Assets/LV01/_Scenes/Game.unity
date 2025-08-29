@@ -1042,25 +1042,6 @@ Transform:
   - {fileID: 1961163425}
   m_Father: {fileID: 682213338}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1516569805 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 625039807460430197, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
-  m_PrefabInstance: {fileID: 365607535275264660}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1516569813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516569805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcd8a0772dfc6947bde84c164b4f79b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamageMaterial: {fileID: 2100000, guid: d8041b75455e40a419eb2c22d2d90c34, type: 2}
-  onDamageDuration: 0.2
 --- !u!4 &1516569820 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4330326091836688606, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
@@ -1748,10 +1729,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
-      propertyPath: moveSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: wallLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
@@ -1795,10 +1772,6 @@ PrefabInstance:
       propertyPath: targetCheckRadius
       value: 1.9
       objectReference: {fileID: 0}
-    - target: {fileID: 7395777003102951355, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
-      propertyPath: targetLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 7516804975746995570, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.33
@@ -1818,10 +1791,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 625039807460430197, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1516569813}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
 --- !u!1001 &664384310767785507
 PrefabInstance:
@@ -1919,14 +1889,6 @@ PrefabInstance:
     - target: {fileID: 2838487818616395352, guid: 83a18455192419f40baa7e003e70db6e, type: 3}
       propertyPath: m_Name
       value: DarkWarden
-      objectReference: {fileID: 0}
-    - target: {fileID: 2838487818616395352, guid: 83a18455192419f40baa7e003e70db6e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4749556700154386527, guid: 83a18455192419f40baa7e003e70db6e, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5911029763868698731, guid: 83a18455192419f40baa7e003e70db6e, type: 3}
       propertyPath: m_LocalPosition.x
