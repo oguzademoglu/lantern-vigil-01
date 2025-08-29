@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +12,7 @@ public class Player : EntityBase
     public Player_JumpState JumpState { get; private set; }
     public Player_FallState FallState { get; private set; }
     public Player_BasicAttackState BasicAttackState { get; private set; }
+    public Player_JumpAttackState JumpAttackState { get; private set; }
     public Player_DeadState DeadState { get; private set; }
 
     [Header("Movement Details")]
@@ -26,6 +26,7 @@ public class Player : EntityBase
 
     [Header("Combat Details")]
     public Vector2[] attackVelocity;
+    public Vector2 jumpAttackVelocity;
     public float attackVelocityDuration = .1f;
     public float comboResetTime = 1f;
     public bool comboAttackQueued;
@@ -63,6 +64,7 @@ public class Player : EntityBase
         FallState = new Player_FallState(this, StateMachine, "jumpFall");
         DeadState = new Player_DeadState(this, StateMachine, "dead");
         BasicAttackState = new Player_BasicAttackState(this, StateMachine, "basicAttack");
+        JumpAttackState = new Player_JumpAttackState(this, StateMachine, "jumpAttack");
     }
 
     protected override void Start()
