@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,8 +25,11 @@ public class Player : EntityBase
     [HideInInspector] public float jumpBufferCounter;
 
     [Header("Combat Details")]
-    public Vector2 attackVelocity;
-    public float attackVelocityDuration;
+    public Vector2[] attackVelocity;
+    public float attackVelocityDuration = .1f;
+    public float comboResetTime = 1f;
+    public bool comboAttackQueued;
+    public Coroutine comboAttackCo;
     public GameObject swordCollider;
 
 
@@ -84,6 +89,19 @@ public class Player : EntityBase
         base.EntityDeath();
         OnPlayerDeath?.Invoke();
         StateMachine.ChangeState(DeadState);
+    }
+
+    public void EnterAttackStateWithDelay()
+    {
+        if (comboAttackCo != null)
+            StopCoroutine(comboAttackCo);
+        comboAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
+    }
+
+    IEnumerator EnterAttackStateWithDelayCo()
+    {
+        yield return new WaitForEndOfFrame();
+        StateMachine.ChangeState(BasicAttackState);
     }
 
 
