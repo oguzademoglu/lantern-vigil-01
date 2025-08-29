@@ -13,6 +13,8 @@ public class Player_AirState : PlayerState
 
         // if (player.WallDetected)
         //     stateMachine.ChangeState(player.WallSlideState);
+        if (playerInputs.Player.Attack.WasPressedThisFrame())
+            stateMachine.ChangeState(player.JumpAttackState);
     }
 
     public override void PhysicsUpdate()
@@ -21,8 +23,8 @@ public class Player_AirState : PlayerState
 
         // if (Math.Abs(player.MoveInput.x) > 0.001f)
         //     player.SetVelocity(player.MoveInput.x * player.moveSpeed * player.inAirSlowMultiplier, rb.linearVelocity.y);
-
-        player.SetVelocity(player.MoveInput.x * player.moveSpeed * player.inAirSlowMultiplier, rb.linearVelocity.y);
+        if (player.MoveInput.x != 0)
+            player.SetVelocity(player.MoveInput.x * player.moveSpeed * player.inAirSlowMultiplier, rb.linearVelocity.y);
 
     }
 
