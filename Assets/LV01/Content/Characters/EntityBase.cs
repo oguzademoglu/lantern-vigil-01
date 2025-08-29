@@ -106,8 +106,8 @@ public class EntityBase : MonoBehaviour
     void HandleCollisionDetection()
     {
         GroundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
-        WallDetected = Physics2D.Raycast(wallCheckFirst.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer)
-                        && Physics2D.Raycast(wallCheckSecond.position, Vector2.right * facingDirection, wallCheckDistance, wallLayer);
+        WallDetected = Physics2D.Raycast(wallCheckFirst.position, Vector2.right * facingDirection, wallCheckDistance, groundLayer)
+                        && Physics2D.Raycast(wallCheckSecond.position, Vector2.right * facingDirection, wallCheckDistance, groundLayer);
     }
     protected virtual void OnDrawGizmos()
     {

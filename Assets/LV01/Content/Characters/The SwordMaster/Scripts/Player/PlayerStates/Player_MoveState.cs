@@ -10,7 +10,7 @@ public class Player_MoveState : Player_GroundedState
     {
         base.Update();
 
-        if (Math.Abs(player.MoveInput.x) < 0.001f)
+        if (Math.Abs(player.MoveInput.x) < 0.001f || player.WallDetected)
         {
             stateMachine.ChangeState(player.IdleState);
         }
