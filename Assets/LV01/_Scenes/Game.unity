@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 6856397}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09176397, y: 4.022521, z: -10}
+  m_LocalPosition: {x: -0.059702873, y: 4.022521, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1017,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 1683366222}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09176397, y: 4.022521, z: -10}
+  m_LocalPosition: {x: -0.059702873, y: 4.022521, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1478,6 +1478,34 @@ PrefabInstance:
     - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: moveSpeed
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[0].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[0].y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[1].y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[2].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772190348097943054, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
+      propertyPath: attackVelocity.Array.data[2].y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7395777003102951355, guid: 5f88d7461f1439b4baa6613c7f046e81, type: 3}
       propertyPath: targetCheckRadius
