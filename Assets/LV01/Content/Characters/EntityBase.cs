@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class EntityBase : MonoBehaviour
 {
+    public event Action OnFlipped;
     public StateMachine StateMachine { get; private set; }
 
 
@@ -95,12 +97,13 @@ public class EntityBase : MonoBehaviour
 
     public void Flip()
     {
-        // transform.Rotate(0, 180, 0);
-        Vector3 s = transform.localScale;
-        s.x *= -1f;
-        transform.localScale = s;
+        transform.Rotate(0, 180, 0);
+        // Vector3 s = transform.localScale;
+        // s.x *= -1f;
+        // transform.localScale = s;
         facingRight = !facingRight;
         facingDirection *= -1;
+        OnFlipped?.Invoke();
     }
 
     void HandleCollisionDetection()
